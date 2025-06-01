@@ -1,0 +1,46 @@
+/**
+ * For more details on how to configure Wrangler, refer to:
+ * https://developers.cloudflare.com/workers/wrangler/configuration/
+ */
+{
+	"$schema": "node_modules/wrangler/config-schema.json",
+	"name": "testing-do",
+	"main": "src/index.ts",
+	"compatibility_date": "2025-05-29",
+	"migrations": [
+		{
+			"tag": "v1",
+			"deleted_classes": [
+				"MyDurableObject"
+			]
+		},
+		{
+			"new_sqlite_classes": [
+				"Project"
+			],
+			"tag": "v2"
+		},
+		{
+			"new_sqlite_classes": [
+				"Container"
+			],
+			"tag": "v3"
+		}
+	],
+	"durable_objects": {
+		"bindings": [
+			{
+				"class_name": "Project",
+				"name": "PROJECT"
+			},
+			{
+				"class_name": "Container",
+				"name": "CONTAINER"
+			}
+		],
+
+	},
+	"observability": {
+		"enabled": true
+	}
+}
